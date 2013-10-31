@@ -52,8 +52,8 @@ public void onClick(View v)
 	// Récupération du nom du fichier
 	CharSequence fileName = textView.getText() ;
 	// Récuperation du chemin du répertoire de stockage
-    	String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-    	+ "/Android/data/" + packageName + "/files/";
+	String path = Environment.getExternalStorageDirectory().getAbsolutePath()
+	+ "/Android/data/" + packageName + "/files/";
     	// ouverture du fichier selectionné
 	File file = new File(path + fileName) ;
 	Intent target = new Intent(Intent.ACTION_VIEW);
@@ -62,9 +62,9 @@ public void onClick(View v)
 	// Creation d'un intent qui permet de choisir un logiciel de lecture 
     	Intent intent = Intent.createChooser(target, "Open File");
 	try {
-	    startActivity(intent);
+    		startActivity(intent);
 	} catch (ActivityNotFoundException e) {
-	    	// En cas de non reconnaisance de l'extension un message d'erreur est affiche
+		// En cas de non reconnaisance de l'extension un message d'erreur est affiche
 		Toast.makeText(getApplicationContext(), "Application to open this file is not
 		available", Toast.LENGTH_LONG).show();
 	} 
