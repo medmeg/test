@@ -45,3 +45,28 @@ public ArrayList<String> getFiles(String DirectoryPath) {
 
         return MyFiles;
 }
+
+public void onClick(View v)
+{
+	TextView textView = (TextView) v ;
+	// Récupération du nom du fichier
+	CharSequence fileName = textView.getText() ;
+	
+    String path = Environment.getExternalStorageDirectory().getAbsolutePath()+ "/Android/data/" + packageName + "/files/";
+    
+    // ouverture du fichier selectionné
+	File file = new File(path + fileName) ;
+	
+	Intent target = new Intent(Intent.ACTION_VIEW);
+	target.setDataAndType(Uri.fromFile(file),"text/plain");
+	target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+	// Creation d'un intent qui permet de choisir un logiciel de lecture 
+    Intent intent = Intent.createChooser(target, "Open File");
+	try {
+	    startActivity(intent);
+	} catch (ActivityNotFoundException e) {
+	    // En cas de non reconnaisance de l'extension un message d'erreur est affiche
+		Toast.makeText(getApplicationContext(), "Application to open this file is not
+		available", Toast.LENGTH_LONG).show();
+	} 
+}
