@@ -26,3 +26,22 @@ public class VmdtLayout extends ViewGroup {
         }
     }
 }
+
+public ArrayList<String> getFiles(String DirectoryPath) {
+        ArrayList<String> MyFiles = new ArrayList<String>();
+        File f = new File(DirectoryPath);
+        f.mkdirs();
+        // Récupération des fichiers
+        File[] files = f.listFiles();
+        if (files.length == 0)
+            return null;
+        else {
+            for (int i=0; i<files.length; i++)
+            	if(files[i].getName().endsWith("pdf")){
+            	    // Ajout uniquement des fichiers pdf
+            		MyFiles.add(files[i].getName());
+            	}
+        }
+
+        return MyFiles;
+}
